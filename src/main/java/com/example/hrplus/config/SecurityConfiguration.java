@@ -15,7 +15,12 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
+        http.authorizeHttpRequests((requests) -> requests
+                // Allow all requests to the "/images" folder for your login page image
+                .requestMatchers("/images/**").permitAll()
+                // Any other request requires authentication
+                .anyRequest().authenticated()
+        );
         http.formLogin(form -> form
                 .loginPage("/login")
                 .permitAll());
