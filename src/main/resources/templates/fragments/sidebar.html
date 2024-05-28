@@ -1,0 +1,100 @@
+<!-- Brand Logo -->
+<a href="#" class="brand-link">
+    <img src="../../logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+         style="opacity: .8">
+    <span class="brand-text font-weight-light">HR Plus</span>
+</a>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <!--        <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
+    <!--          <div class="image">-->
+    <!--            <img src="/home/amine/9.jpg" class="img-circle elevation-2" alt="User Image">-->
+    <!--          </div>-->
+    <!--          <div class="info">-->
+    <!--            <a href="#" class="d-block">Amine EL Houjjaji</a>-->
+    <!--          </div>-->
+    <!--        </div>-->
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline mt-3">
+        <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                    <i class="fas fa-search fa-fw"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        Employees
+                        <i class="fas fa-angle-left right"></i>
+                        <span class="badge badge-info right" th:text="${employees.size()}"></span>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="/employees/" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Afficher employes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/employees/add" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Ajouter Employe</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/employees/delete" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Supprimer employer</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/employees/edit" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Editer employer</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/salary/" class="nav-link">
+                    <!-- <i class="nav-icon fas fa-copy"></i> -->
+                    <!-- <i class="nav-icon fas fa-hand-holding-dollar"></i> -->
+                    <i class="nav-icon fas fa-dollar-sign"></i>
+                    <p>
+                        Salary
+                        <!-- <i class="fas fa-angle-left right"></i> -->
+                        <!-- <span class="badge badge-info right">6</span> -->
+                    </p>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a href="/reporting/" class="nav-link">
+                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <p>
+                        Reporting
+                        <!-- <i class="right fas fa-angle-left"></i> -->
+                    </p>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modifer un employé</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" th:insert="fragments/navbar"></nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" th:insert="fragments/sidebar"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Modifer employé</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Modifer employé</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary p-4">
+                            <!-- form start -->
+                            <form method="post" enctype="multipart/form-data" th:object="${employeeDto}">
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Matricule</label>
+                                    <div class="col-sm-8">
+                                        <input readonly class="form-control-plaintext" th:value="${employee.matricule}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Nom</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" th:field="${employeeDto.nom}">
+                                        <p th:if="${#fields.hasErrors('nom')}" th:errorclass="text-danger" th:errors="${employeeDto.nom}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Prenom</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" th:field="${employeeDto.prenom}">
+                                        <p th:if="${#fields.hasErrors('prenom')}" th:errorclass="text-danger" th:errors="${employeeDto.prenom}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Date Entree</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" th:field="${employeeDto.dateEntree}">
+                                        <p th:if="${#fields.hasErrors('dateEntree')}" th:errorclass="text-danger" th:errors="${employeeDto.dateEntree}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Departement</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" th:field="${employeeDto.departement}">
+                                            <option value="IT">IT</option>
+                                            <option value="RH">RH</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="R&D">R&D</option>
+                                        </select>
+                                        <p th:if="${#fields.hasErrors('departement')}"
+                                           th:errorclass="text-danger"
+                                           th:errors="${employeeDto.departement}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Numéro sécurité sociale</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" th:field="${employeeDto.numeroSecSoc}">
+                                        <p th:if="${#fields.hasErrors('numeroSecSoc')}"
+                                           th:errorclass="text-danger"
+                                           th:errors="${employeeDto.numeroSecSoc}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Salaire de Base (jour)</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" step="0.01" min="0" class="form-control" th:field="${employeeDto.salaireBaseJour}">
+                                        <p th:if="${#fields.hasErrors('salaireBaseJour')}"
+                                           th:errorclass="text-danger"
+                                           th:errors="${employeeDto.salaireBaseJour}"></p>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Nombre Abscences</label>
+                                    <div class="col-sm-8">
+                                        <input type="number" step="1" min="0" max="26" class="form-control" th:field="${employeeDto.nbAbsence}">
+                                        <p th:if="${#fields.hasErrors('salaireBaseJour')}"
+                                           th:errorclass="text-danger"
+                                           th:errors="${employeeDto.salaireBaseJour}"></p>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="offset-sm-4 col-sm-8">
+                                        <img th:src="@{'/images/' + ${employee.imageFileName}}" alt="..." width="150">
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label">Image</label>
+                                    <div class="col-sm-8">
+                                        <!--                                        <input type="file" class="form-control-file" th:field="${employeeDto.imageFileName}">-->
+                                        <input type="file" class="form-control-file" th:field="${employeeDto.imageFile}" accept="image/png, image/gif, image/jpeg">
+                                        <p th:if="${#fields.hasErrors('imageFile')}"
+                                           th:errorclass="text-danger"
+                                           th:errors="${employeeDto.imageFile}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-sm-4 col-sm-4 d-grid">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="col-sm-4 d-grid">
+                                        <a class="btn btn-outline-primary" href="/employees" role="button">Cancel</a>
+                                    </div>
+                                </div>
+
+
+                                <!--                                <div class="card-body">-->
+                                <!--                                    <div class="form-group">-->
+                                <!--                                        <label for="exampleInputEmail1">Email address</label>-->
+                                <!--                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-group">-->
+                                <!--                                        <label for="exampleInputPassword1">Password</label>-->
+                                <!--                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-group">-->
+                                <!--                                        <label for="exampleInputFile">File input</label>-->
+                                <!--                                        <div class="input-group">-->
+                                <!--                                            <div class="custom-file">-->
+                                <!--                                                <input type="file" class="custom-file-input" id="exampleInputFile">-->
+                                <!--                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>-->
+                                <!--                                            </div>-->
+                                <!--                                            <div class="input-group-append">-->
+                                <!--                                                <span class="input-group-text">Upload</span>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-group">-->
+                                <!--                                        <label for="exampleSelectBorder">Departement</label>-->
+                                <!--                                        <select class="custom-select" id="exampleSelectBorder">-->
+                                <!--                                            <option>Value 1</option>-->
+                                <!--                                            <option>Value 2</option>-->
+                                <!--                                            <option>Value 3</option>-->
+                                <!--                                        </select>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.card-body &ndash;&gt;-->
+                                <!--                                <div class="card-footer">-->
+                                <!--                                    <button type="submit" class="btn btn-primary">Submit</button>-->
+                                <!--                                </div>-->
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                        <!--/.col (left) -->
+
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer" th:insert="fragments/footer"></footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../plugins/jszip/jszip.min.js"></script>
+<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<!--<script src="../../dist/js/demo.js"></script>-->
+</body>
+
+</html>
