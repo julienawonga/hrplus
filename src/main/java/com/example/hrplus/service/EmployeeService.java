@@ -31,7 +31,8 @@ public class EmployeeService {
             Employee employee = optionalEmployee.get();
 
             // Load the report template
-            InputStream reportTemplate = getClass().getResourceAsStream("/reports/employe.jrxml");
+            // see https://www.baeldung.com/java-classpath-resource-cannot-be-opened
+            InputStream reportTemplate = getClass().getClassLoader().getResourceAsStream("reports/employe.jrxml");
 
             // Compile the report template
             JasperReport jasperReport = JasperCompileManager.compileReport(reportTemplate);
