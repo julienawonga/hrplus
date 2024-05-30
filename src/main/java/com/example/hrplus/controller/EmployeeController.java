@@ -64,10 +64,11 @@ public class EmployeeController {
 //        Save the image
         MultipartFile image = employeeDto.getImageFile();
         Date createdAt = new Date();
-        String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+//        String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+        String storageFileName = image.getOriginalFilename();
 
         try {
-            String uploadDir = "public/images/";
+            String uploadDir = "src/main/resources/static/images/";
             Path uploadPath = Paths.get(uploadDir);
 
             if (!Files.exists(uploadPath)){
@@ -167,7 +168,7 @@ public class EmployeeController {
 
                 if(!employeeDto.getImageFile().isEmpty()){
                     // delete the image
-                    String uploadDir = "public/images/";
+                    String uploadDir = "src/main/resources/static/images/";
                     Path oldImagePath = Paths.get(uploadDir + employee.get().getImageFileName());
 
                     try {
@@ -179,7 +180,8 @@ public class EmployeeController {
                     // save new image file
                     MultipartFile image = employeeDto.getImageFile();
                     Date createdAt = new Date();
-                    String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+//                    String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+                    String storageFileName = image.getOriginalFilename();
 
                     try (InputStream inputStream = image.getInputStream()){
                         Files.copy(inputStream, Paths.get(uploadDir + storageFileName), StandardCopyOption.REPLACE_EXISTING);
@@ -216,7 +218,7 @@ public class EmployeeController {
         if ( employee.isPresent() ) {
 
             // delete Image
-            Path imagePath = Paths.get("public/images/" + employee.get().getImageFileName());
+            Path imagePath = Paths.get("src/main/resources/static/images/" + employee.get().getImageFileName());
 
             try {
                 Files.delete(imagePath);
